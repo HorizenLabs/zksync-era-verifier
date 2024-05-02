@@ -1,0 +1,22 @@
+os: linux
+dist: jammy
+
+language: rust
+
+rust:
+  - stable
+  - nightly
+
+cache: cargo
+
+script:
+  - cargo install --debug cargo-make
+
+jobs:
+  include:
+    - stage: "Run CI stable"
+      script: cargo make ci-remote
+    - stage: "Run CI nightly"
+      allow_failures:
+      - rust: nightly
+      script: cargo make ci-remote
