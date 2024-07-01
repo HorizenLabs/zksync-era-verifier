@@ -122,25 +122,22 @@ impl<'a> Deserializer<'a> {
     /// Read a `Fq` field from the stream if any.
     #[allow(dead_code)]
     pub fn fq(&mut self) -> Result<Fq, DeserializeError> {
-        fq(&self.data[self.pos..]).map(|v| {
-            self.pos += size_of_val(&v);
-            v
+        fq(&self.data[self.pos..]).inspect(|v| {
+            self.pos += size_of_val(v);
         })
     }
 
     /// Read a `Fr` field from the stream if any.
     pub fn fr(&mut self) -> Result<Fr, DeserializeError> {
-        fr(&self.data[self.pos..]).map(|v| {
-            self.pos += size_of_val(&v);
-            v
+        fr(&self.data[self.pos..]).inspect(|v| {
+            self.pos += size_of_val(v);
         })
     }
 
     /// Read a `G1` point from the stream if any.
     pub fn g1(&mut self) -> Result<G1, DeserializeError> {
-        g1(&self.data[self.pos..]).map(|v| {
+        g1(&self.data[self.pos..]).inspect(|_v| {
             self.pos += G1_SIZE;
-            v
         })
     }
 }
