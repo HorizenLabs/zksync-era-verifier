@@ -1,4 +1,4 @@
-// Copyright 2024, The Horizen Foundation
+// Copyright 2024, Horizen Labs, Inc.
 // SPDX-License-Identifier: Apache-2.0
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -54,7 +54,8 @@ impl<E: Engine> Circuit<E> for ZkSyncSnarkEthCircuit {
     }
 }
 
-/// Deserialize an ethereum ZkSync proof without fille the public inputs.
+/// Deserialize an ethereum ZkSync proof without filling the public inputs.
+///
 /// The serialized proof for ethereum omit the public inputs that will be
 /// given by the smart contract; in order to verify the proof, the user
 /// should provide the public inputs later.
